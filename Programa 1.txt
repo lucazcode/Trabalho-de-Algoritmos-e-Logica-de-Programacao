@@ -1,0 +1,287 @@
+Algoritmo "Programa 1"
+
+// Regra -> terceira variável sempre <seu nome>
+//       -> tamanho do vetor sempre <sua idade>
+
+Var
+
+// Var menu:
+
+v: vetor[1..20] de inteiro
+i, mes_nasc, dia_nasc: inteiro
+lucas: caractere
+loop: logico
+
+// Var Geral:
+
+idade, lucas_int: inteiro
+
+// Var A:
+
+f1, f2: inteiro
+
+// Var B:
+
+termo, termo1, termo2: inteiro
+
+// Var C:
+
+divisores: inteiro
+lucas_log: logico
+
+funcao num_primo(lucas_int: inteiro): inteiro
+
+var
+
+i, divisores: inteiro
+
+inicio
+
+divisores <- 0
+
+       para i de 1 ate lucas_int faca
+            se((lucas_int % i) = 0) então
+                      divisores <- divisores + 1
+            fimse
+       fimpara
+
+       se(divisores = 2) entao
+            retorne 1
+       senao
+            retorne 0
+       fimse
+fimfuncao
+
+// Var D:
+
+funcao par(lucas_int: inteiro): inteiro
+
+var
+
+i, divisores: inteiro
+
+inicio
+
+divisores <- 0
+
+       para i de 1 ate lucas_int faca
+            se((lucas_int % 2) = 0) entao
+                      divisores <- divisores + 1
+            fimse
+       fimpara
+
+       se(divisores > 1) entao
+            retorne 1
+       senao
+            retorne 0
+       fimse
+fimfuncao
+
+// Var E:
+
+funcao impar(lucas_int: inteiro): inteiro
+
+var
+
+i, divisores: inteiro
+
+inicio
+
+divisores <- 0
+
+       para i de 1 ate lucas_int faca
+            se((lucas_int % 2) = 0) entao
+                      divisores <- divisores + 1
+            fimse
+       fimpara
+
+       se(divisores > 1) entao
+            retorne 1
+       senao
+            retorne 0
+       fimse
+fimfuncao
+
+Inicio
+
+dia_nasc <- 1
+mes_nasc <- 10
+idade <- 20
+loop <- verdadeiro
+
+escreval("Minha data de nascimento: 01/10/2004")
+escreval("Selecione uma opção:")
+escreval("")
+
+escreval("A) Sequência de Fibonacci")
+escreval("B) Sequência de Fettucine")
+escreval("C) Números primos")
+escreval("D) Números pares")
+escreval("E) Números ímpares")
+escreval("")
+
+escreva("Input: ")
+leia(lucas)
+
+repita
+
+   escolha(lucas)
+                 CASO "A"
+                 
+                        limpatela
+
+                        // Inicializa os dois primeiros termos da sequência de fibonacci.
+                        f1 <- 0
+                        f2 <- 1
+
+                        // Exibe no console o título "Sequência de Fibonacci:".
+                        escreval("Sequência de Fibonacci:")
+                        escreval("")
+
+                        // Exibe o primeiro e o segundo termos da sequência de Fibonacci, que são fixos (0 e 1).
+                        escreval(" 1°:", f1)
+                        escreval(" 2°:", f2)
+
+                        // Laço de repetição para calcular os termos da sequência de Fibonacci a partir do 3º até o 'idade'-ésimo termo.
+                        para i de 3 ate idade faca
+                         // Calcula o próximo termo da sequência, que é a soma dos dois termos anteriores (f1 + f2).
+                         lucas_int <- (f1 + f2)
+
+                         // Armazena o novo termo calculado no vetor 'v', na posição 'i'.
+                         v[i] <- lucas_int
+
+                         // Atualiza os valores de f1 e f2 para os próximos cálculos: f1 passa a ser f2, e f2 passa a ser o novo termo 'lucas'.
+                         f1 <- f2
+                         f2 <- lucas_int
+                        fimpara
+
+                        // Laço de repetição para imprimir todos os termos da sequência de Fibonacci gerados e armazenados no vetor 'v'.
+                        para i de 3 ate idade faca
+                         // Exibe o índice 'i' e o valor do termo armazenado no vetor 'v' na posição 'i'.
+                         escreval(i,"°:",v[i])
+                        fimpara
+
+                        loop <- falso
+
+                 CASO "B"
+
+                        limpatela
+
+                        termo1 <- 10
+                        termo2 <- 1
+                        lucas_int <- 20
+
+                        v[1] <- termo1
+                        v[2] <- termo2
+
+                        escreval("Sequência de Fetuccine:")
+                        escreval("")
+
+                        // Laço para calcular e imprimir os próximos termos
+                        para i de 3 ate lucas_int faca
+                          se ((i % 2) = 1) entao
+                              // Posição ímpar: soma dos dois termos anteriores
+                              termo <- (termo2 + termo1)
+                          senao
+                              // Posição par: subtração do primeiro anterior pelo segundo anterior
+                              termo <- (termo2 - termo1)
+                          fimse
+
+                          // Guarda o termo calculado
+                          v[i] <- termo
+
+                          // Atualiza os termos anteriores
+                          termo1 <- termo2
+                          termo2 <- termo
+                        fimpara
+
+                        para i de 1 ate lucas_int faca
+                           escreval(i,"º termo:",v[i])
+                        fimpara
+
+                        loop <- falso
+
+                 CASO "C"
+
+                        limpatela
+
+                        escreval("Números primos:")
+                        escreval("")
+
+                        para i de 1 ate 20 faca
+
+                             enquanto (num_primo(idade) = 0) faca
+                                      idade <- idade + 1
+                             fimenquanto
+
+                             v[i] <- idade
+                             idade <- idade + 1
+
+                        fimpara
+
+                        para i de 1 ate 20 faca
+                             escreval(i,"º primo:",v[i])
+                        fimpara
+
+                        loop <- falso
+
+                 CASO "D"
+                 
+                       limpatela
+
+                       escreval("Números pares: ")
+                       escreval("")
+
+                       para i de 1 ate 20 faca
+
+                       enquanto (par(dia_nasc) = 0) faca
+                                dia_nasc <- dia_nasc + 1
+                       fimenquanto
+
+                       v[i] <- dia_nasc
+                       dia_nasc <- dia_nasc + 1
+
+                       fimpara
+
+                       para i de 1 ate 20 faça
+                            escreval(i,"º:",v[i])
+                       fimpara
+
+                      loop <- falso
+
+                 CASO "E"
+                 
+                       limpatela
+
+                       escreval("Números ímpares: ")
+                       escreval("")
+
+                       para i de 1 ate 20 faça
+
+                       enquanto (impar(mes_nasc) > 0) faça
+                                mes_nasc <- mes_nasc + 1
+                       fimenquanto
+
+                       v[i] <- mes_nasc
+                       mes_nasc <- mes_nasc + 1
+
+                       fimpara
+
+                       para i de 1 ate 20 faça
+                            escreval(i,"º:",v[i])
+                       fimpara
+
+                      loop <- falso
+
+                 OUTROCASO
+
+                        escreval("Opção inválida, tente novamente.")
+                        escreva("Input: ")
+                        leia(lucas)
+
+   fimescolha
+ate loop = falso
+
+Fimalgoritmo
+
+// =)!
