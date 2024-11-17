@@ -1,0 +1,149 @@
+Algoritmo "Programa 4"
+
+Var
+
+// MENU: Variáveis para entrada de dados e controle de fluxo
+N1, N2: inteiro  // Números de entrada
+lucas: caractere // Variável para capturar a opção do menu
+loop: logico     // Controle de repetição do menu
+
+// A) Função para calcular N1 elevado a N2 (potência)
+funcao funcao_elevado(x, y: inteiro): inteiro
+var
+    resultado, i: inteiro  // Variáveis para cálculo da potência
+inicio
+    resultado <- 1  // Inicializa o resultado como 1 (identidade da multiplicação)
+    para i de 1 ate y faca
+        resultado <- resultado * x  // Multiplica o valor de x repetidamente
+    fimpara
+    retorne resultado  // Retorna o resultado da potência
+fimfuncao
+
+// B) Função para somar N1 e N2 considerando os números intermediários entre eles
+funcao funcao_inter(x, y: inteiro): inteiro
+var
+    i, resultado: inteiro  // Variáveis para o cálculo da soma intermediária
+inicio
+
+// Caso N1 > N2: Soma de N2 até N1-1
+se x > y entao
+   resultado <- y
+   para i de y ate (x - 1) faca
+        resultado <- resultado + (i + 1)  // Soma os números intermediários
+   fimpara
+   retorne resultado
+fimse
+
+// Caso N1 = N2: Retorna a soma de N1 e N2
+se x = y entao
+   retorne x + y
+fimse
+
+// Caso N1 < N2: Soma de N1 até N2-1
+se x < y entao
+   resultado <- x
+   para i de x ate (y - 1) faca
+        resultado <- resultado + (i + 1)  // Soma os números intermediários
+   fimpara
+   retorne resultado
+fimse
+fimfuncao
+
+// C) Função para calcular o produto dos números intermediários entre N1 e N2
+funcao funcao_inter_produto(x, y: inteiro): inteiro
+var
+    i, resultado: inteiro  // Variáveis para o cálculo do produto
+inicio
+
+// Caso N1 > N2: Multiplica de N2+1 até N1-1
+se x > y entao
+   resultado <- (y + 1)
+   para i de (y + 1) ate (x - 2) faca
+        resultado <- resultado * (i + 1)  // Multiplica os números intermediários
+   fimpara
+   retorne resultado
+fimse
+
+// Caso N1 = N2: Retorna 0, pois não há números intermediários
+se x = y entao
+   retorne 0
+fimse
+
+// Caso N1 < N2: Multiplica de N1+1 até N2-1
+se x < y entao
+   resultado <- (x + 1)
+   para i de (x + 1) ate (y - 2) faca
+        resultado <- resultado * (i + 1)  // Multiplica os números intermediários
+   fimpara
+   retorne resultado
+fimse
+fimfuncao
+
+// D) Procedimento para preencher um vetor com uma sequência especial baseada em N1 e N2
+procedimento popular_vetor(x, y: inteiro): inteiro
+var
+    v: vetor[1..20] de inteiro  // Vetor com 20 posições
+    i: inteiro  // Variável de controle para o loop
+inicio
+    para i de 1 ate (20 - (x + y)) faca
+         v[i] <- x  // Preenche o vetor com valores baseados em N1 e N2
+         x <- x + y  // Atualiza x para o próximo valor na sequência
+    fimpara
+fimprocedimento
+
+Inicio
+
+// Menu de opções para o usuário
+escreva("Insira N1: ")
+leia(N1)
+escreva("Insira N2: ")
+leia(N2)
+
+escreval("")  // Linha em branco
+
+escreval("Selecione uma opção:")  // Exibe o menu de opções
+escreval("")
+escreval("A) N1 ^ N2")  // Exibe a opção A (potência)
+escreval("B) N1 + <Números Intermediários> + N2")  // Exibe a opção B (soma dos números intermediários)
+escreval("C) Produto dos <Números Intermediários>")  // Exibe a opção C (produto dos números intermediários)
+escreval("D) Vetor Especial")  // Exibe a opção D (preencher vetor especial)
+escreval("")
+escreva("Input: ")
+leia(lucas)  // Lê a escolha do usuário
+
+// Laço para repetir até uma opção válida ser escolhida
+repita
+   escolha(lucas)  // Executa a opção escolhida
+                 CASO "A"
+                        limpatela
+                        escreval(N1, " ^", N2, " =", funcao_elevado(N1, N2))  // Calcula e exibe a potência
+                        loop <- falso  // Encerra o loop após a execução
+
+                 CASO "B"
+                        limpatela
+                        escreval(N1, " + <Números Intermediários> +", N2, " =", funcao_inter(N1, N2))  // Calcula e exibe a soma dos números intermediários
+                        loop <- falso  // Encerra o loop após a execução
+
+                 CASO "C"
+                        limpatela
+                        escreval("Produto dos Números Intermediários = ", funcao_inter_produto(N1, N2))  // Calcula e exibe o produto dos números intermediários
+                        loop <- falso  // Encerra o loop após a execução
+
+                 CASO "D"
+                       limpatela
+                       popular_vetor(N1, N2)  // Preenche o vetor de acordo com N1 e N2
+                       escreval("Vetor preenchido internamente.")  // Mensagem de confirmação
+                       loop <- falso  // Encerra o loop após a execução
+
+                 OUTROCASO
+                        escreval("Opção inválida, tente novamente.")  // Caso a opção seja inválida
+                        escreva("Input: ")
+                        leia(lucas)  // Lê novamente a entrada do usuário
+                        loop <- verdadeiro  // Continua o loop até uma opção válida ser escolhida
+
+   fimescolha
+ate loop = falso  // Repete até o usuário escolher uma opção válida
+
+Fimalgoritmo
+
+// =)!
