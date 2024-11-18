@@ -1,0 +1,83 @@
+Algoritmo "Programa 2"
+
+Var
+
+   periodo,i: inteiro
+   juros: caractere
+   ValIni, ValMen, TaxaJuros, TotalJuros, Joao, TotalAcumulado, x:real
+   v: vetor[1..12] de caractere
+
+Inicio
+   TotalJuros <- 0
+   Joao <- 0
+
+   escreval("Insira o tipo de juros desejado:")
+   leia(juros)
+
+   escreval("Insira o valor inicialmente depositado:")
+   leia(ValIni)
+   se ValIni < 1000 entao
+      escreval("Valor minimo de parcelamento deve ser R$ 1000")
+      fimalgoritmo
+   fimse
+
+   escreval("Insira o valor mensalmente depositado:")
+   leia(ValMen)
+
+   escreval("Insira a taxa de juros mensal")
+   leia(TaxaJuros)
+   se TaxaJuros < 1 entao
+      escreval("Valor dos juros tem que ser positivo")
+      fimalgoritmo
+   fimse
+   se TaxaJuros > 10 entao
+      escreval("Valor dos juros não pode superar 10%")
+      fimalgoritmo
+   fimse
+   TaxaJuros <- TaxaJuros / 100
+
+   escreval("Insira o periodo em meses:")
+   leia(periodo)
+   se periodo < 6 entao
+      escreval("Numero de parcelas invalido")
+      fimalgoritmo
+   fimse
+   se periodo > 12 entao
+      escreval("Numero de parcelas invalido")
+      fimalgoritmo
+   fimse
+
+   TotalAcumulado <- ValIni
+   limpatela
+
+   escolha (juros)
+
+   caso "S"
+      escreval("Mês | Juros | Total Investido | Total de Juros | Total Acumulado")
+      escreval ("Mês: 0 Juros:",Joao," Total Investido:",ValIni," Total de Juros:",TotalJuros," Total Acumulado:",TotalAcumulado)
+      para i de 1 ate periodo faca
+         Joao <- ValIni * TaxaJuros
+         TotalJuros <- TotalJuros + Joao
+         TotalAcumulado <- TotalJuros + ValIni
+         escreval ("Mês:",i," Juros:",Joao," Total Investido:",ValIni," Total de Juros:",TotalJuros," Total Acumulado:",TotalAcumulado)
+      fimpara
+
+
+   caso "C"
+      escreval("Mês | Juros | Total Investido | Total de Juros | Total Acumulado")
+      escreval ("Mês: 0 Juros:",Joao," Total Investido:",ValIni," Total de Juros:",TotalJuros," Total Acumulado:",TotalAcumulado)
+      para i de 0 ate periodo faca
+         Joao <- TotalAcumulado * TaxaJuros
+         TotalJuros <- TotalJuros + Joao
+         TotalAcumulado <- TotalJuros + ValIni
+         escreval ("Mês:",i," Juros:",Joao," Total Investido:",ValIni," Total de Juros:",TotalJuros," Total Acumulado:",TotalAcumulado)
+         Valini <- Valini + Valmen
+         TotalAcumulado <- TotalJuros + ValIni
+      fimpara
+
+   outrocaso
+      Escreval("Tipo de Juros Não Existe")
+
+   fimescolha
+
+Fimalgoritmo
