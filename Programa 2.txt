@@ -21,7 +21,7 @@ Inicio
       fimalgoritmo
    fimse
 
-   escreval("Insira o valor mensalmente depositado:")
+   escreval("Insira o valor depositado mensalmente:")
    leia(ValMen)
 
    escreval("Insira a taxa de juros mensal")
